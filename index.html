@@ -3,208 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DEXCAM by Yohan</title>
+    <title>DEXCAM BY YOHAN</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Baybayin&family=Noto+Sans+Khmer&family=Noto+Sans+Devanagari&family=Noto+Sans+Armenian&family=Noto+Sans+Georgian&family=Noto+Sans+SC:wght@400;700&family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+Thai&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <svg style="display: none;">
+        <filter id="grainy-noise">
+            <feTurbulence type="fractalNoise" baseFrequency="0.95" numOctaves="4" stitchTiles="stitch" />
+            <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.15 0" />
+        </filter>
+    </svg>
+
     <div id="app-container">
-        <div id="controls">
-            <div class="app-branding centered-section">
-                <h1 id="brand-title">DEXCAM</h1>
-                <span id="brand-author">by Yohan</span>
-                <span id="version-tag">v2.0.0</span>
-                <div id="privacy-badge">
-                    <span class="shield-icon">🛡️</span> Local Sandbox Active (Zero Data Collected)
-                </div>
-            </div>
-            
-            <hr>
-            <h2 class="centered-section">ASCII Controls</h2>
-            
-            <div class="control-group">
-                <label class="custom-checkbox-label">
-                    <input type="checkbox" id="mirror-cam" checked>
-                    <span class="checkbox-box"></span> Mirror Camera
-                </label>
-            </div>
-
-            <div class="control-group">
-                <label for="display-mode">Display Mode</label>
-                <select id="display-mode">
-                    <option value="overlay">Webcam Overlay</option>
-                    <option value="ascii-only">Pure ASCII Matrix</option>
-                </select>
-            </div>
-
-            <div class="control-group">
-                <label for="glyph-size">Glyph Resolution Layer (<span id="size-val">10</span>px)</label>
-                <input type="range" id="glyph-size" min="6" max="25" value="10">
-            </div>
-
-            <div class="control-section">
-                <h3>ASCII ENGINE RENDERING (v2.0.0)</h3>
-                
-                <label for="ascii-speed">Engine Refresh Rate (FPS):</label>
-                <select id="ascii-speed">
-                    <option value="0">Capped (Max Performance)</option>
-                    <option value="30">30 FPS (Cinematic Cinema)</option>
-                    <option value="15">15 FPS (Retro Terminal)</option>
-                    <option value="5">5 FPS (Stop Motion Matrix)</option>
-                </select>
-                
-                <div style="margin-top:15px;">
-                    <label class="custom-checkbox-label">
-                        <input type="checkbox" id="glow-toggle">
-                        <span class="checkbox-box"></span> Glow
-                    </label>
-                </div>
-                
-                <div class="control-group-row" style="margin-top:10px;">
-                    <div>
-                        <label for="glow-color">Glow Color:</label>
-                        <input type="color" id="glow-color" value="#00ff00">
-                    </div>
-                    <div>
-                        <label for="glow-strength">Glow Strength (<span id="glow-strength-val">5</span>px):</label>
-                        <input type="range" id="glow-strength" min="1" max="20" value="5">
-                    </div>
-                </div>
-            </div>
-
-            <hr>
-            <h2>Color Profiler</h2>
-            
-            <div class="control-group">
-                <label class="custom-checkbox-label">
-                    <input type="checkbox" id="use-source-color">
-                    <span class="checkbox-box"></span> Render Source Webcam Color
-                </label>
-            </div>
-
-            <div class="control-group">
-                <label for="glyph-color">Global Glyph Fill Hex</label>
-                <div style="display: flex; align-items: center; gap: 15px;">
-                    <input type="color" id="glyph-color" value="#00ff00">
-                    <span style="font-size:12px; color:#86868b;">Main Hex Accent</span>
-                </div>
-            </div>
-
-            <div class="control-group-row" style="margin-top: 15px;">
-                <div>
-                    <label for="bg-shadow" style="margin-bottom:6px;">Shadows</label>
-                    <input type="color" id="bg-shadow" value="#000000">
-                </div>
-                <div>
-                    <label for="bg-midtone" style="margin-bottom:6px;">Midtones</label>
-                    <input type="color" id="bg-midtone" value="#000000">
-                </div>
-                <div>
-                    <label for="bg-highlight" style="margin-bottom:6px;">Highlights</label>
-                    <input type="color" id="bg-highlight" value="#000000">
-                </div>
-            </div>
-
-            <hr>
-            <h2>Tonal Mapping Pipeline</h2>
-
-            <div class="tonal-block">
-                <div class="tonal-header">
-                    <label class="custom-checkbox-label">
-                        <input type="checkbox" id="map-shadows-enable" checked>
-                        <span class="checkbox-box"></span> <strong>Shadow Matrix</strong>
-                    </label>
-                    <input type="range" id="thresh-shadow" min="0" max="255" value="85">
-                    <span class="threshold-badge"><span id="shadow-val">85</span>dn</span>
-                </div>
-                <div class="control-group">
-                    <select id="map-shadows">
-                        <option value="math" selected>MATHEMATICS+</option>
-                        <option value="greek">GREEK</option>
-                        <option value="russian">CRYILLIC</option>
-                        <option value="thai">SIAM THAI</option>
-                        <option value="baybayin">BAYBAYIN</option>
-                        <option value="chinese">HANZI</option>
-                        <option value="japanese">JAPANESE+</option>
-                        <option value="roman">ROMAN ALEPH</option>
-                        <option value="alphabetPlus">DIACRITICS</option>
-                        <option value="armenian">ARMENIAN</option>
-                        <option value="georgian">GEORGIAN</option>
-                        <option value="cambodian">KHMER</option>
-                        <option value="hindu">DEVANAGARI</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="tonal-block">
-                <div class="tonal-header">
-                    <label class="custom-checkbox-label">
-                        <input type="checkbox" id="map-midtones-enable" checked>
-                        <span class="checkbox-box"></span> <strong>Midtone Matrix</strong>
-                    </label>
-                    <input type="range" id="thresh-midtone" min="0" max="255" value="170">
-                    <span class="threshold-badge"><span id="mid-val">170</span>dn</span>
-                </div>
-                <div class="control-group">
-                    <select id="map-midtones">
-                        <option value="math">MATHEMATICS+</option>
-                        <option value="greek" selected>GREEK</option>
-                        <option value="russian">CYRILLIC</option>
-                        <option value="thai">SIAM THAI</option>
-                        <option value="baybayin">BAYBAYIN</option>
-                        <option value="chinese">HANZI</option>
-                        <option value="japanese">JAPANESE+</option>
-                        <option value="roman">ROMAN ALEPH</option>
-                        <option value="alphabetPlus">DIACRITICS</option>
-                        <option value="armenian">ARMENIAN</option>
-                        <option value="georgian">GEORGIAN</option>
-                        <option value="cambodian">KHMER</option>
-                        <option value="hindu">DEVANAGARI</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="tonal-block">
-                <div class="tonal-header">
-                    <label class="custom-checkbox-label">
-                        <input type="checkbox" id="map-highlights-enable" checked>
-                        <span class="checkbox-box"></span> <strong>Highlight Matrix</strong>
-                    </label>
-                    <input type="range" id="thresh-highlight" min="0" max="255" value="230">
-                    <span class="threshold-badge"><span id="high-val">230</span>dn</span>
-                </div>
-                <div class="control-group">
-                    <select id="map-highlights">
-                        <option value="math">MATHEMATICS+</option>
-                        <option value="greek">GREEK</option>
-                        <option value="russian" selected>CYRILLIC</option>
-                        <option value="thai">SIAM THAI</option>
-                        <option value="baybayin">SIAM THAI</option>
-                        <option value="chinese">HANZI</option>
-                        <option value="japanese">JAPANESE+</option>
-                        <option value="roman">ROMAN ALEPH</option>
-                        <option value="alphabetPlus">DIACRITICS</option>
-                        <option value="armenian">ARMENIAN</option>
-                        <option value="georgian">GEORGIAN</option>
-                        <option value="cambodian">KHMER</option>
-                        <option value="hindu">DEVANAGARI</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
         <div id="viewport-workspace">
+            <div id="ambient-bg-transition-layer"></div>
+            <div id="grain-canvas-overlay"></div>
+            
             <div id="screen-canvas-container">
-                <video id="webcam" autoplay playsinline style="display:none;"></video>
                 <div class="canvas-wrapper">
                     <canvas id="ascii-canvas"></canvas>
-                    <div id="countdown-overlay"></div>
                 </div>
                 
                 <button id="snap-btn">
                     SAY CHEESE! 
-                    <span class="shortcut-hint">(Ctrl + A)</span>
+                    <span class="shortcut-hint">(CTRL + A)</span>
                 </button>
             </div>
             
@@ -214,10 +39,186 @@
 
             <div id="mini-gallery-deck" class="closed">
                 <div class="gallery-panel-header">
-                    <h4>MY SNAPS</h4>
+                    <h4>CAPTURED SNAPS</h4>
                     <span id="close-gallery-btn">&times;</span>
                 </div>
                 <div id="gallery-items-container"></div>
+            </div>
+        </div>
+
+        <div id="controls">
+            <div class="app-branding centered-section">
+                <h1 id="brand-title">DEXCAM</h1>
+                <span id="version-tag">V2.1.5</span>
+                <div id="privacy-badge">
+                    <span class="shield-icon">🛡️</span> LOCAL SANDBOX ACTIVE (ZERO DATA COLLECTED)
+                </div>
+            </div>
+            
+            <hr>
+            <h2>ASCII CONTROLS</h2>
+            
+            <div class="control-group">
+                <label class="custom-checkbox-label">
+                    <input type="checkbox" id="mirror-cam">
+                    <div class="checkbox-box"></div>
+                    <span>MIRROR</span>
+                </label>
+            </div>
+
+            <div class="control-group">
+                <label for="display-mode">DISPLAY MODE</label>
+                <select id="display-mode">
+                    <option value="overlay" selected>OVERLAY MATRIX MODE</option>
+                    <option value="ascii-only">PURE TERMINAL DIGITAL ASCII</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="ascii-speed">ENGINE REFRESH CONTROLLER</label>
+                <select id="ascii-speed">
+                    <option value="0" selected>MAX FRAME RATE (CONTINUOUS STREAM)</option>
+                    <option value="24">CINEMATIC 24 FPS</option>
+                    <option value="15">RETRO 15 FPS</option>
+                    <option value="5">GLITCH 5 FPS</option>
+                </select>
+            </div>
+
+            <div class="control-section">
+                <h2>RESOLUTION & DENSITY GRID</h2>
+                <div class="control-group">
+                    <label for="glyph-size">GLYPH RESOLUTION LAYER (<span id="size-val">7</span>PX)</label>
+                    <input type="range" id="glyph-size" min="5" max="20" value="7">
+                </div>
+
+                <div class="control-group-row">
+                    <div class="color-picker-wrapper">
+                        <input type="color" id="glyph-color" value="#00ff00">
+                        <div class="color-picker-backlight" id="glyph-color-bg" style="--picker-glow: #00ff00;"></div>
+                    </div>
+
+                    <label class="custom-checkbox-label">
+                        <input type="checkbox" id="use-source-color">
+                        <div class="checkbox-box"></div>
+                        <span class="real-color-btn-mock">REAL COLOR MATRIX</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="control-section">
+                <h2>LUMINANCE SCRIPT MAPPING</h2>
+                
+                <div class="tonal-block">
+                    <div class="tonal-header">
+                        <label class="custom-checkbox-label">
+                            <input type="checkbox" id="map-shadows-enable" checked>
+                            <div class="checkbox-box"></div>
+                            <span>SHADOWS</span>
+                        </label>
+                        <span class="threshold-badge"><span id="shadow-val">85</span></span>
+                    </div>
+                    <input type="range" id="thresh-shadow" min="10" max="120" value="85">
+                    <select id="map-shadows" style="margin-top: 6px;">
+                        <option value="math" selected>MATHEMATICAL OPERATORS</option>
+                        <option value="roman">STANDARD ROMAN GLYPHS</option>
+                        <option value="baybayin">ANCIENT BAYBAYIN SCRIPT</option>
+                        <option value="japanese">NEO-TOKYO KATAKANA</option>
+                        <option value="chinese">IMPERIAL HANZI CHARACTERS</option>
+                        <option value="greek">HELLENIC GREEK SYMBOLS</option>
+                        <option value="thai">SIAM THAI ALPHABET</option>
+                        <option value="georgian">KARTVELIAN GEORGIAN GLYPHS</option>
+                        <option value="armenian">CLASSICAL ARMENIAN LETTERS</option>
+                        <option value="alphabetPlus">EXTENDED LATIN GLYPHS</option>
+                        <option value="russian">CYRILLIC RUSSIAN BLOCKS</option>
+                        <option value="cambodian">KHMER CAMBODIAN SCRIPT</option>
+                        <option value="hindu">SACRED DEVANAGARI HINDU</option>
+                    </select>
+                </div>
+
+                <div class="tonal-block" style="margin-top: 8px;">
+                    <div class="tonal-header">
+                        <label class="custom-checkbox-label">
+                            <input type="checkbox" id="map-midtones-enable" checked>
+                            <div class="checkbox-box"></div>
+                            <span>MIDTONES</span>
+                        </label>
+                        <span class="threshold-badge"><span id="mid-val">170</span></span>
+                    </div>
+                    <input type="range" id="thresh-midtone" min="121" max="200" value="170">
+                    <select id="map-midtones" style="margin-top: 6px;">
+                        <option value="math">MATHEMATICAL OPERATORS</option>
+                        <option value="roman">STANDARD ROMAN GLYPHS</option>
+                        <option value="baybayin">ANCIENT BAYBAYIN SCRIPT</option>
+                        <option value="japanese">NEO-TOKYO KATAKANA</option>
+                        <option value="chinese">IMPERIAL HANZI CHARACTERS</option>
+                        <option value="greek" selected>HELLENIC GREEK SYMBOLS</option>
+                        <option value="thai">SIAM THAI ALPHABET</option>
+                        <option value="georgian">KARTVELIAN GEORGIAN GLYPHS</option>
+                        <option value="armenian">CLASSICAL ARMENIAN LETTERS</option>
+                        <option value="alphabetPlus">EXTENDED LATIN GLYPHS</option>
+                        <option value="russian">CYRILLIC RUSSIAN BLOCKS</option>
+                        <option value="cambodian">KHMER CAMBODIAN SCRIPT</option>
+                        <option value="hindu">SACRED DEVANAGARI HINDU</option>
+                    </select>
+                </div>
+
+                <div class="tonal-block" style="margin-top: 8px;">
+                    <div class="tonal-header">
+                        <label class="custom-checkbox-label">
+                            <input type="checkbox" id="map-highlights-enable" checked>
+                            <div class="checkbox-box"></div>
+                            <span>HIGHLIGHTS</span>
+                        </label>
+                        <span class="threshold-badge"><span id="high-val">230</span></span>
+                    </div>
+                    <input type="range" id="thresh-highlight" min="201" max="250" value="230">
+                    <select id="map-highlights" style="margin-top: 6px;">
+                        <option value="math">MATHEMATICAL OPERATORS</option>
+                        <option value="roman">STANDARD ROMAN GLYPHS</option>
+                        <option value="baybayin">ANCIENT BAYBAYIN SCRIPT</option>
+                        <option value="japanese">NEO-TOKYO KATAKANA</option>
+                        <option value="chinese">IMPERIAL HANZI CHARACTERS</option>
+                        <option value="greek">HELLENIC GREEK SYMBOLS</option>
+                        <option value="thai">SIAM THAI ALPHABET</option>
+                        <option value="georgian">KARTVELIAN GEORGIAN GLYPHS</option>
+                        <option value="armenian">CLASSICAL ARMENIAN LETTERS</option>
+                        <option value="alphabetPlus">EXTENDED LATIN GLYPHS</option>
+                        <option value="russian" selected>CYRILLIC RUSSIAN BLOCKS</option>
+                        <option value="cambodian">KHMER CAMBODIAN SCRIPT</option>
+                        <option value="hindu">SACRED DEVANAGARI HINDU</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="control-section">
+                <h2>GLOW CORE FX ENGINE</h2>
+                <div class="control-group" style="margin-bottom: 12px;">
+                    <label class="custom-checkbox-label">
+                        <input type="checkbox" id="glow-toggle">
+                        <div class="checkbox-box"></div>
+                        <span class="real-color-btn-mock">ACTIVATE PHOTONIC GLOW</span>
+                    </label>
+                </div>
+                
+                <div class="control-group-row">
+                    <div class="color-picker-wrapper">
+                        <input type="color" id="glow-color" value="#00ff00">
+                        <div class="color-picker-backlight" id="glow-color-bg"></div>
+                    </div>
+                    
+                    <div class="control-group" style="flex: 1;">
+                        <label for="glow-strength">RADIUS (<span id="glow-strength-val">5</span>PX)</label>
+                        <input type="range" id="glow-strength" min="2" max="25" value="5">
+                    </div>
+                </div>
+            </div>
+
+            <div id="human-manifesto-footer">
+                <div class="manifesto-inner-frame">
+                    <span class="manifesto-line">MADE BY A HUMAN</span>
+                    <span class="manifesto-divider"></span>
+                    <span class="manifesto-line-highlight">MADE BY YOHAN</span>
+                </div>
             </div>
         </div>
     </div>
@@ -225,14 +226,15 @@
     <div id="lightbox-modal" class="hidden">
         <div class="modal-content">
             <span id="close-modal">&times;</span>
-            <img id="modal-img" src="" alt="Review Snapshot">
+            <img id="modal-img" src="" alt="REVIEW SNAPSHOT">
             <div class="modal-actions">
-                <button id="modal-save-btn" class="action-btn save">Save to Device</button>
-                <button id="modal-delete-btn" class="action-btn delete">Delete Photo</button>
+                <button id="modal-save-btn" class="action-btn save">SAVE TO DEVICE</button>
+                <button id="modal-delete-btn" class="action-btn delete">DELETE PHOTO</button>
             </div>
         </div>
     </div>
 
+    <video id="webcam" autoplay playsinline style="display:none;"></video>
     <script src="app.js"></script>
 </body>
 </html>

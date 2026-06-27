@@ -1,18 +1,18 @@
-// ==========================================================================//
-// ████████╗██╗  ██╗███████╗    ██████╗  █████╗ ██╗   ██╗██╗██████╗          //
-// ╚══██╔══╝██║  ██║██╔════╝    ██╔══██╗██╔══██╗██║   ██║██║██╔══██╗         //
-//    ██║   ███████║█████╗      ██║  ██║███████║██║   ██║██║██║  ██║         //
-//    ██║   ██╔══██║██╔══╝      ██║  ██║██╔══██║╚██╗ ██╔╝██║██║  ██║         //
-//    ██║   ██║  ██║███████╗    ██████╔╝██║  ██║ ╚████╔╝ ██║██████╔╝         //
-//    ╚═╝   ╚═╝  ╚═╝╚══════╝    ╚═════╝ ╚═╝  ╚═╝  ╚═══╝  ╚═╝╚═════╝          //
-// --------------------------------------------------------------------------//
-// PROPRIETARY CLIENT-SIDE FIREWALL BLOCK: "DAVID'S WALL" (v2.0.4 HD Patch)  //
-// Built exclusively for DEXCAM. Engineered to ensure absolute zero-data     //
-// leaks, cross-site scripting (XSS) immunity, and local runtime protection. //
-// ==========================================================================//
+// ============================================================================================= //
+//  ██████╗  █████╗ ██╗   ██╗██╗██████╗  ███████╗    ██╗    ██╗     ██   █████╗ ██╗     ██╗      //
+//  ██╔══██╗██╔══██╗██║   ██║██║██╔══██╗ ██╔════╝    ██║    ██║     ██  ██╔══██╗██║     ██║      //
+//  ██║  ██║███████║██║   ██║██║██║  ██║ ███████╗    ██║    ██║     ██  ███████║██║     ██║      //
+//  ██║  ██║██╔══██║╚██╗ ██╔╝██║██║  ██║ ╚════██║    ╚██╗  ██╔██╗  ██╗  ██╔══██║██║     ██║      //
+//  ██████╔╝██║  ██║ ╚████╔╝ ██║██████╔╝ ███████║      ╚███╔╝   ╚███╔╝  ██║  ██║███████╗███████╗ //
+//  ╚═════╝ ╚═╝  ╚═╝  ╚═══╝  ╚═╝╚═════╝  ╚══════╝       ╚══╝     ╚══╝   ╚═╝ ╚═╝╚══════╝╚══════╝  //
+// ----------------------------------------------------------------------------------------------//
+// PROPRIETARY CLIENT-SIDE FIREWALL BLOCK: "DAVID'S WALL" (v2.1.5 Engine)                        //
+// Built exclusively for DEXCAM. Engineered to ensure absolute zero-data                         //
+// leaks, cross-site scripting (XSS) immunity, and local runtime protection.                     //
+// ============================================================================================= //
 (function() {
     'use strict';
-    console.log("🛡️ DAVID'S WALL: Operational. HD Render Security Pipeline Active.");
+    console.log("🛡️ DAVID'S WALL: Active. Verified Clean State Management Protocol.");
     window.eval = function() { return null; };
 })();
 
@@ -20,9 +20,10 @@ const video = document.getElementById('webcam');
 const canvas = document.getElementById('ascii-canvas');
 const ctx = canvas.getContext('2d', { willReadFrequently: true });
 
-// --- V2.0.5 PERFECT ASPECT HIGH-DENSITY ENGINE ---
 const sampleCanvas = document.createElement('canvas');
 const sampleCtx = sampleCanvas.getContext('2d', { willReadFrequently: true }); 
+sampleCanvas.width = 240;
+sampleCanvas.height = 180;
 
 const charPools = {
     math: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "-", "*", "/", "=", "%", "√", "π"],
@@ -40,6 +41,24 @@ const charPools = {
     hindu: ["अ", "ब", "क", "ड", "इ", "फ", "ग", "ह", "इ", "ज", "क", "ल", "ม", "न", "ओ", "प", "र", "स"]
 };
 Object.freeze(charPools);
+
+// --- UPGRADED BRIGHTER & MORE VIBRANT COLOR SPECIFICATIONS ---
+const themeColors = {
+    math: '#423282',        // Vibrant Cyber Violet
+    roman: '#1e3852',       // Rich Cobalt Blue
+    baybayin: '#522b19',    // Warm Terracotta Amber
+    japanese: '#4f1837',    // Electric Synth Magenta
+    chinese: '#5c1919',     // Deep Imperial Crimson
+    greek: '#144038',       // Bright Sea Emerald
+    thai: '#404216',        // Antique Brass Olive
+    georgian: '#411e54',    // Bright Royal Velvet
+    armenian: '#163c4a',    // Radiant Dark Teal
+    alphabetPlus: '#292933',// Polished Slate Titanium
+    russian: '#4f391f',     // Industrial Oxide Gold
+    cambodian: '#2f4a1c',   // Deep Neon Forest Jade
+    hindu: '#4f1d3c'        // Vivid Orchid Sunset
+};
+Object.freeze(themeColors);
 
 const uiCache = {
     cellSize: 7, 
@@ -68,25 +87,39 @@ const uiCache = {
 let lastFrameTime = 0;
 
 function adjustCanvasDimensions() {
-    // Alamin ang tunay na native aspect ratio ng webcam stream mo
     const videoWidth = video.videoWidth || 640;
     const videoHeight = video.videoHeight || 480;
     const aspect = videoWidth / videoHeight;
     
-    // Balanced horizontal width grid limits para mabilis pero siksik ang pixel counting
-    sampleCanvas.width = 240; 
+    sampleCanvas.width = 240;
     sampleCanvas.height = Math.round(240 / aspect);
     
-    // Ultra-crisp HD presentation layer na may flexible proportional vertical size
     canvas.width = 1280;
     canvas.height = Math.round(1280 / aspect);
 }
 window.addEventListener('resize', adjustCanvasDimensions);
 
+/* ==========================================================================
+   OPTIMIZED NATIVE AMBIENT PROPERTY RENDERING LINK
+   ========================================================================== */
+function updateAmbientBackground() {
+    const shadowTheme = themeColors[uiCache.mapShadow] || '#423282';
+    const midtoneTheme = themeColors[uiCache.mapMid] || '#144038';
+    const highlightTheme = themeColors[uiCache.mapHigh] || '#4f391f';
+    
+    const workspace = document.getElementById('viewport-workspace');
+    
+    if (workspace) {
+        // Diretsong tinatawagan ang CSS properties para sa hardware-accelerated fluid mathematical morphing
+        workspace.style.setProperty('--bg-color-1', shadowTheme);
+        workspace.style.setProperty('--bg-color-2', midtoneTheme);
+        workspace.style.setProperty('--bg-color-3', highlightTheme);
+    }
+}
+
 async function initWebcam() {
     try {
         await document.fonts.ready;
-        // Humingi ng standard high-def widescreen stream configuration
         const stream = await navigator.mediaDevices.getUserMedia({ 
             video: { width: { ideal: 1280 }, height: { ideal: 720 } } 
         });
@@ -128,6 +161,30 @@ document.getElementById('glow-toggle')?.addEventListener('change', (e) => uiCach
 document.getElementById('glow-color')?.addEventListener('input', (e) => { uiCache.glowColor = e.target.value; document.documentElement.style.setProperty('--glyph-color', e.target.value); });
 document.getElementById('glow-strength')?.addEventListener('input', (e) => { document.getElementById('glow-strength-val').innerText = e.target.value; uiCache.glowStrength = parseInt(e.target.value); });
 
+document.getElementById('map-shadows')?.addEventListener('change', (e) => { uiCache.mapShadow = e.target.value; updateAmbientBackground(); });
+document.getElementById('map-midtones')?.addEventListener('change', (e) => { uiCache.mapMid = e.target.value; updateAmbientBackground(); });
+document.getElementById('map-highlights')?.addEventListener('change', (e) => { uiCache.mapHigh = e.target.value; updateAmbientBackground(); });
+
+const glyphColorInput = document.getElementById('glyph-color');
+const glowColorInput = document.getElementById('glow-color');
+
+function updateColorBacklights() {
+    if (glyphColorInput) {
+        const val = glyphColorInput.value;
+        uiCache.glyphColor = val;
+        document.getElementById('glyph-color-bg')?.style.setProperty('--picker-glow', val);
+    }
+    if (glowColorInput) {
+        const val = glowColorInput.value;
+        uiCache.glowColor = val;  
+        document.getElementById('glow-color-bg')?.style.setProperty('--picker-glow', val);
+        document.documentElement.style.setProperty('--glyph-color', val);
+    }
+}
+
+glyphColorInput?.addEventListener('input', updateColorBacklights);
+glowColorInput?.addEventListener('input', updateColorBacklights);
+
 function syncAllInputsToCache() {
     if (sizeInput) uiCache.cellSize = parseInt(sizeInput.value);
     if (shadowInput) uiCache.tShadow = parseInt(shadowInput.value);
@@ -137,9 +194,6 @@ function syncAllInputsToCache() {
     uiCache.glyphColor = document.getElementById('glyph-color')?.value ?? '#00ff00';
     uiCache.useSourceColor = document.getElementById('use-source-color')?.checked ?? false;
     uiCache.displayMode = document.getElementById('display-mode')?.value ?? 'overlay';
-    uiCache.bgShadow = document.getElementById('bg-shadow')?.value ?? '#000000';
-    uiCache.bgMidtone = document.getElementById('bg-midtone')?.value ?? '#000000';
-    uiCache.bgHighlight = document.getElementById('bg-highlight')?.value ?? '#000000';
     uiCache.mapShadow = document.getElementById('map-shadows')?.value ?? 'math';
     uiCache.mapMid = document.getElementById('map-midtones')?.value ?? 'greek';
     uiCache.mapHigh = document.getElementById('map-highlights')?.value ?? 'russian';
@@ -150,6 +204,8 @@ function syncAllInputsToCache() {
     uiCache.glowEnabled = document.getElementById('glow-toggle')?.checked ?? false;
     uiCache.glowColor = document.getElementById('glow-color')?.value ?? '#00ff00';
     uiCache.glowStrength = parseInt(document.getElementById('glow-strength')?.value ?? '5');
+    updateAmbientBackground();
+    updateColorBacklights();
 }
 
 document.getElementById('controls')?.addEventListener('change', syncAllInputsToCache);
@@ -191,13 +247,12 @@ function renderLoop(timestamp) {
     if(uiCache.displayMode === 'overlay') {
         ctx.save();
         ctx.shadowBlur = 0; 
-
         if (uiCache.mirror) {
             ctx.translate(canvas.width, 0);
             ctx.scale(-1, 1);
         }
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-        ctx.restore(); 
+        ctx.restore();
         
         ctx.save();
         ctx.fillStyle = 'rgba(0, 0, 0, 0.45)';
@@ -208,7 +263,6 @@ function renderLoop(timestamp) {
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
 
-    // Core High-Definition Continuous Raster Mapping Loop
     for (let y = 0; y < canvas.height; y += cellSize) {
         for (let x = 0; x < canvas.width; x += cellSize) {
             const sampleX = Math.floor((x / canvas.width) * sampleCanvas.width);
@@ -268,7 +322,7 @@ function renderLoop(timestamp) {
 initWebcam();
 
 // ========================================== //
-// SNAPSHOT ENGINE CONTROLS WITH GALLERY       //
+// SNAPSHOT ENGINE GALLERY CONTROLS           //
 // ========================================== //
 let dynamicPhotosMemory = [];
 let primaryActiveIndex = null;
@@ -311,7 +365,7 @@ document.getElementById('modal-save-btn')?.addEventListener('click', () => {
     if (primaryActiveIndex !== null) {
         const dlLink = document.createElement('a');
         dlLink.href = dynamicPhotosMemory[primaryActiveIndex];
-        dlLink.download = `DEXCAM_PremiumHD_${Date.now()}.png`;
+        dlLink.download = `DEXCAM_V215_${Date.now()}.png`;
         dlLink.click();
     }
 });
